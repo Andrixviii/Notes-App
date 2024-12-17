@@ -5,6 +5,10 @@ export default class Document extends NextDocument {
     return (
       <Html lang="en">
         <Head>
+          <meta
+            name="viewprot"
+            content="width=device-width, initial-scale=1.0"
+          />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
             rel="preconnect"

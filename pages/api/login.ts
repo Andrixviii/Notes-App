@@ -36,19 +36,18 @@ export default async function handler(
       return res.status(401).json({ message: "Invalid email or password" });
     }
 
-    // Buat JWT token
     const token = await new SignJWT({ userId: user._id, email: user.email })
       .setProtectedHeader({ alg: "HS256" })
-      .setExpirationTime("30m") // Token berlaku 30 menit
+      .setExpirationTime("30m")
       .sign(JWT_SECRET_KEY);
 
     // Simpan token ke cookie
-    const isDevelopment = process.env.NODE_ENV === "development"; // Untuk pengaturan cookie di localhost
+    const isDevelopment = process.env.NODE_ENV === "development";
     res.setHeader(
       "Set-Cookie",
       `token=${token}; Path=/; HttpOnly; ${
         isDevelopment ? "" : "Secure;"
-      } SameSite=Strict; Max-Age=1800` // Cookie berlaku 1 jam
+      } SameSite=Strict; Max-Age=1800`
     );
 
     return res.status(200).json({ message: "Login successful" });

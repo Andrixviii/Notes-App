@@ -67,6 +67,7 @@
   border-radius: 20px;
   border-width: 0.1rem;
   border: 1px solid #170f49;
+  margin: 0 15px;
   width: 83px;
   height: 40px;
 
@@ -200,17 +201,88 @@
   justify-content: center;
 }
 
+.burgerContainer {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.burgerButton {
+  width: 30px;
+  height: 3px;
+  background-color: #170f49;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+/* Responsif untuk tampilan mobile */
 @media (max-width: 768px) {
-  .hero {
+  .burgerContainer {
+    display: flex;
+    gap: 8px;
+  }
+
+  .navbar {
+    display: none;
     flex-direction: column;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .navbar.open {
+    display: flex;
+  }
+
+  .navLinks {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
+
+  .signIn,
+  .getStarted {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .hero {
+    padding: 20px;
+    align-items: center;
     text-align: center;
   }
 
   .textContent {
     max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .textContent h2 {
+    font-size: 2.8rem;
   }
 
   .icon img {
+    display: none;
+    margin: 0 auto;
+  }
+
+  .taskList {
+    padding: 20px;
+  }
+
+  .about {
+    font-size: 2rem;
+    padding: 20px;
+  }
+
+  .about h2 {
+    font-size: 1.8rem;
     margin-top: 20px;
   }
 }

@@ -3,7 +3,6 @@ import type { NextRequest } from "next/server";
 import { jwtVerify } from "jose";
 
 //secret key nya ada di file .env
-
 const JWT_SECRET_KEY = new TextEncoder().encode(process.env.JWT_SECRET_KEY);
 
 export async function middleware(req: NextRequest) {
@@ -24,5 +23,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: "/dashboard/:path*",
+  matcher: ["/dashboard/:path* /api/:path*"],
 };

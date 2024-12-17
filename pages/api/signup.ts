@@ -1,12 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import bcrypt from "bcryptjs"; // Untuk hashing password
+import bcrypt from "bcryptjs";
 import dbConnect from "../../templates/LandingPage/utils/dbConnect";
 import User from "../../models/user";
 
-// Fungsi handler utama
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    await dbConnect(); // Koneksi ke database
+    await dbConnect();
   } catch (error) {
     console.error("Database connection failed:", error);
     return res.status(500).json({ message: "Database connection failed." });
@@ -16,8 +15,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === "POST") {
       const { email, password } = req.body;
 
-      // Validasi input
       if (!email || !password) {
+        // Validasi input
         return res
           .status(400)
           .json({ message: "Email and password are required." });
@@ -38,7 +37,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       }
 
       // Hash password menggunakan bcrypt
-      const hashedPassword = await bcrypt.hash(password, 10); // Salt rounds = 10
+      const hashedPassword = await bcrypt.hash(password, 10);
 
       // Buat user baru
       const newUser = new User({ email, password: hashedPassword });
